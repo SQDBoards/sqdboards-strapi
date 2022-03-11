@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pcbs",
+  "info": {
+    "singularName": "pcb",
+    "pluralName": "pcbs",
+    "displayName": "pcb"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "size": {
+      "type": "string",
+      "required": true
+    },
+    "features": {
+      "type": "json"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}
