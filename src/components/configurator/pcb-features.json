@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_configurator_pcb_features",
+  "info": {
+    "displayName": "PcbFeatures",
+    "icon": "cog"
+  },
+  "options": {},
+  "attributes": {
+    "hotswap_support": {
+      "type": "boolean",
+      "required": true
+    },
+    "rgb_type": {
+      "type": "string",
+      "required": true
+    },
+    "usb_type": {
+      "type": "string",
+      "required": true
+    },
+    "firmware": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

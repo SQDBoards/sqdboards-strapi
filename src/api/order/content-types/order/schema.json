@@ -4,24 +4,38 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "order"
+    "displayName": "order",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "specifications": {
-      "type": "json",
+      "type": "component",
+      "repeatable": false,
+      "component": "user.order-specifications",
       "required": true
     },
     "modifications": {
-      "type": "json"
+      "type": "component",
+      "repeatable": false,
+      "component": "user.order-modifications",
+      "required": true
     },
     "state": {
-      "type": "string",
-      "required": false,
-      "default": "Processing"
+      "type": "integer",
+      "max": 5,
+      "min": 1,
+      "default": 1,
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "orders"
     }
   }
 }

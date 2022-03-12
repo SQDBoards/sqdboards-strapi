@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_user_order_specifications",
+  "info": {
+    "displayName": "OrderSpecifications",
+    "icon": "cogs"
+  },
+  "options": {},
+  "attributes": {
+    "pcb": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pcb.pcb"
+    }
+  }
+}

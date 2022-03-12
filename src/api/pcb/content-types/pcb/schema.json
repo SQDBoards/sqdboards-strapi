@@ -4,10 +4,11 @@
   "info": {
     "singularName": "pcb",
     "pluralName": "pcbs",
-    "displayName": "pcb"
+    "displayName": "pcb",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -19,16 +20,19 @@
       "type": "string",
       "required": true
     },
-    "features": {
-      "type": "json"
-    },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": true,
+      ]
+    },
+    "features": {
+      "type": "component",
+      "repeatable": false,
+      "component": "configurator.pcb-features",
       "required": true
     }
   }

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_user_order_modifications",
+  "info": {
+    "displayName": "OrderModifications",
+    "icon": "pen"
+  },
+  "options": {},
+  "attributes": {
+    "lube_switches": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "lube_stabs": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "case_foam": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
