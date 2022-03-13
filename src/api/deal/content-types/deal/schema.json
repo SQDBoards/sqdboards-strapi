@@ -4,7 +4,8 @@
   "info": {
     "singularName": "deal",
     "pluralName": "deals",
-    "displayName": "deal"
+    "displayName": "deal",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -44,20 +45,26 @@
       "default": "To Deal"
     },
     "cover": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
       "type": "media",
       "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "cover_attribution": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "required": true
+      "type": "string"
     }
   }
 }

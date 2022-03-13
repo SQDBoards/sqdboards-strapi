@@ -17,6 +17,7 @@ module.exports = {
           populate: ["role", "orders"],
         });
       };
+
     strapi.controller("api::order.order").find = async function (ctx) {
       let entities;
 
@@ -28,6 +29,8 @@ module.exports = {
           populate: ["user"],
         });
       }
+
+      if (!entities) return;
 
       let orderIds = [],
         orders = [];
@@ -45,7 +48,39 @@ module.exports = {
         orders.push(entry);
       }
 
-      return orders;
+      return {
+        data: orders.map((order) =>
+          sanitizeEntity(order, { model: strapi.getModel("api::order.order") })
+        ),
+      };
+    };
+
+    strapi.controller("api::order.order").findOne = async function (ctx) {
+      // debug
+      // console.log("context:", ctx.params)
+
+      let entity;
+
+      entity = await strapi.service("api::order.order").findOne(ctx.params.id, {
+        populate: ["user"],
+      });
+
+      if (!entity) return;
+
+      if (entity.user.id === ctx.state.user.id) {
+        entity = await strapi
+          .service("api::order.order")
+          .findOne(ctx.params.id, {
+            populate: ["modifications", "specifications", "specifications.pcb"],
+          });
+        return {
+          data: sanitizeEntity(entity, {
+            model: strapi.getModel("api::order.order"),
+          }),
+        };
+      }
+
+      return ctx.forbidden("Order does not belong to authenthicated user.");
     };
   },
 

@@ -2,7 +2,8 @@
   "collectionName": "components_configurator_pcb_features",
   "info": {
     "displayName": "PcbFeatures",
-    "icon": "cog"
+    "icon": "cog",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -20,6 +21,10 @@
     },
     "firmware": {
       "type": "string",
+      "required": true
+    },
+    "rgb_support": {
+      "type": "boolean",
       "required": true
     }
   }
