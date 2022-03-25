@@ -16,7 +16,7 @@
     "username": {
       "type": "string",
       "minLength": 3,
-      "unique": true,
+      "unique": false,
       "configurable": false,
       "required": true
     },
@@ -68,6 +68,10 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "user"
+    },
+    "picture": {
+      "type": "string",
+      "required": false
     }
   }
 }

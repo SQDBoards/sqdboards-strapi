@@ -3,21 +3,7 @@
 const { sanitizeEntity } = require("strapi-utils");
 
 module.exports = {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
   register({ strapi }) {
-    strapi.service("plugin::users-permissions.user").fetchAuthenticatedUser =
-      function (id) {
-        return strapi.query("plugin::users-permissions.user").findOne({
-          where: { id },
-          populate: ["role", "orders"],
-        });
-      };
-
     strapi.controller("api::order.order").find = async function (ctx) {
       let entities;
 
@@ -36,6 +22,7 @@ module.exports = {
         orders = [];
 
       entities.results.forEach((e) => {
+        if (!e.user) return;
         if (ctx.state.user.id === e.user.id) orderIds.push(e.id);
       });
 
@@ -56,9 +43,6 @@ module.exports = {
     };
 
     strapi.controller("api::order.order").findOne = async function (ctx) {
-      // debug
-      // console.log("context:", ctx.params)
-
       let entity;
 
       entity = await strapi.service("api::order.order").findOne(ctx.params.id, {
@@ -82,14 +66,19 @@ module.exports = {
 
       return ctx.forbidden("Order does not belong to authenthicated user.");
     };
+
+    // strapi.controller("plugin::users-permissions.user").update = async function (ctx) {
+    //   if (ctx.params.id != ctx.state.user.id) ctx.forbidden("You can only edit your profile.")
+
+    //   console.log("ctx", ctx)
+    //   console.log("body", ctx.request.body)
+
+    //   if (strapi.service("plugin::users-permissions.user").edit(ctx.params.id, ctx.request.body)) {
+    //     ctx.response.status = 200
+    //     ctx.response.message = "Profile updated!"
+    //   }
+    // }
   },
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
   bootstrap(/*{ strapi }*/) {},
 };
